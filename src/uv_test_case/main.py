@@ -32,8 +32,3 @@ def frontend_init(fastapi_app: FastAPI):
 
 app = FastAPI()
 frontend_init(app)
-
-
-# @app.get("/")
-# def index(config: Annotated[Config, Depends(get_config)]) -> Config:
-#     return config
