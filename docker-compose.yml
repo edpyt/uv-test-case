@@ -1,0 +1,21 @@
+services:
+  cars:
+    container_name: cars 
+    build: .
+    command: uvicorn src.cars.main:app --host 0.0.0.0 --port 8001 
+    ports:
+      - 8001:8001
+  cats:
+    container_name: cats
+    build: .
+    command: quart run --host 0.0.0.0 --port 8002
+    ports:
+      - 8002:8002
+    environment:
+      QUART_APP: src.cats.main:app
+  dogs:
+    container_name: dogs 
+    build: .
+  main:
+    container_name: main
+    build: .
