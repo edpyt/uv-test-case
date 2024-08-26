@@ -4,17 +4,14 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "nicegui>=1.4.36",
-    "fastapi[standard]>=0.109.1,<0.110.0",
-]
+dependencies = ["nicegui>=1.4.36", "fastapi[standard]>=0.109.1,<0.110.0"]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv.workspace]
-members = ["src/cars", "src/cats", "src/dogs"]
+# [tool.uv.workspace]
+# members = ["src/cars/*", "src/cats", "src/dogs/*"]
 
 [tool.ruff]
 line-length = 128

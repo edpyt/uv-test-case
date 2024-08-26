@@ -1,17 +1,9 @@
-[project]
-name = "cars"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "fastapi[standard]>=0.109.1,<0.110.0",
+[tool.uv]
+dev-dependencies = [
+    "fastapi[standard]>=0.109.1,<0.110.0"
 ]
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
 
+[tool.uv.workspace]
+members = ["cars/*"]
 
-[tool.hatch.build.targets.wheel]
-packages = ["."]

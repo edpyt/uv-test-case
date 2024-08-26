@@ -9,7 +9,5 @@ ENV PATH="/root/.cargo/bin/:$PATH"
 COPY . /app
 WORKDIR /app
 
-RUN uv sync --frozen
-
 ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
