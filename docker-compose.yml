@@ -1,7 +1,11 @@
 services:
   cars:
     container_name: cars 
-    build: .
+    build:
+      context: src/cars
+      dockerfile: ../../Dockerfile
+      args:
+        APP_NAME: cars
     command: uvicorn src.cars.main:app --host 0.0.0.0 --port 8001 
     ports:
       - 8001:8001
@@ -10,6 +14,8 @@ services:
     build:
       context: src/cats
       dockerfile: ../../Dockerfile
+      args:
+        APP_NAME: cats
     command: quart run --host 0.0.0.0 --port 8002
     ports:
       - 8002:8002
