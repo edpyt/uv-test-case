@@ -1,6 +1,7 @@
 [tool.uv]
 dev-dependencies = [
-    "fastapi[standard]>=0.109.1,<0.110.0"
+    "fastapi[standard]>=0.109.1,<0.110.0",
+    "uvicorn>=0.30.6",
 ]
 
 

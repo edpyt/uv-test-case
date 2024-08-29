@@ -1,12 +1,16 @@
 services:
+  main:
+    container_name: main
+    build: .
+    command: uvicorn src.uv_test_case.main:app --host 0.0.0.0
+    ports:
+      - 8000:8000
   cars:
     container_name: cars 
     build:
       context: src/cars
       dockerfile: ../../Dockerfile
-      args:
-        APP_NAME: cars
-    command: uvicorn src.cars.main:app --host 0.0.0.0 --port 8001 
+    command: uvicorn main:app --host 0.0.0.0 --port 8001 
     ports:
       - 8001:8001
   cats:
@@ -14,16 +18,14 @@ services:
     build:
       context: src/cats
       dockerfile: ../../Dockerfile
-      args:
-        APP_NAME: cats
-    command: quart run --host 0.0.0.0 --port 8002
+    command: uvicorn main:app --host 0.0.0.0 --port 8002
     ports:
       - 8002:8002
-    environment:
-      QUART_APP: main:app
   dogs:
     container_name: dogs 
-    build: .
-  main:
-    container_name: main
-    build: .
+    build:
+      context: src/dogs
+      dockerfile: ../../Dockerfile
+    command: sanic main --host 0.0.0.0 --port 8003
+    ports:
+      - 8003:8003

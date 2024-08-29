@@ -1,19 +1,15 @@
 FROM python:3.12-slim-bookworm
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-ARG APP_NAME=app
+WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
+ADD uv.lock /app/uv.lock
+ADD pyproject.toml /app/pyproject.toml
 
-ADD https://astral.sh/uv/0.3.3/install.sh /uv-installer.sh
-RUN sh /uv-installer.sh && rm /uv-installer.sh
-ENV PATH="/root/.cargo/bin/:$PATH"
+RUN uv sync --frozen --no-install-project 
 
-WORKDIR /$APP_NAME
-COPY . /$APP_NAME
+ADD . /app
 
 RUN uv sync --frozen
 
-ENV VIRTUAL_ENV=/$APP_NAME/.venv
-ENV PATH="/$APP_NAME/.venv/bin:$PATH"
-
-RUN pip freeze
+ENV PATH="/app/.venv/bin:$PATH"

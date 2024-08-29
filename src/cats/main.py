@@ -30,4 +30,5 @@ async def cats() -> list[dict]:
     )
 
 
-app.run()
+if __name__ == "__main":
+    app.run()
